@@ -10,7 +10,10 @@
         ├── confirmaciones.txt
         ├── package-lock.json
         ├── package.json
+        ├── sdkRoutes.js
         ├── server.js
+    ├── .gitignore
     ├── index.html
-    └── response.html
+    ├── response.html
+
 ```
