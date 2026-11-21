@@ -1,0 +1,92 @@
+:root {
+  --bg-page: #f3f6fa;
+  --surface-card: #ffffff;
+  --surface-box: #f8fafc;
+  --header-bg: #111827;
+  --accent-color: #0d6efd;
+  --accent-hover: #0b5ed7;
+  --border-soft: #e2e8f0;
+}
+
+body.checkout-body {
+  background-color: var(--bg-page);
+  color: #1e293b;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  min-height: 100vh;
+}
+
+.checkout-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--surface-card);
+}
+
+.checkout-header {
+  background: linear-gradient(135deg, var(--header-bg) 0%, #1e293b 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.badge-sandbox {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-weight: 500;
+}
+
+.product-box {
+  background-color: var(--surface-box);
+  border: 1px solid var(--border-soft);
+  transition: border-color 0.2s ease;
+}
+
+.product-box:hover {
+  border-color: #cbd5e1;
+}
+
+.btn-pay {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+  border-radius: 10px;
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease;
+}
+
+.btn-pay:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-pay:active {
+  transform: translateY(0);
+}
+
+/* Media queries */
+@media (max-width: 575.98px) {
+  .checkout-header {
+    padding: 1.25rem !important;
+  }
+
+  .checkout-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .btn-pay {
+    font-size: 1rem;
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .checkout-card {
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07) !important;
+  }
+}
