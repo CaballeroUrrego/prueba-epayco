@@ -1,4 +1,4 @@
-// voy a crear un Catálogo de productos con nombre, descripción, valor base, IVA (19%) y total
+// Catálogo de productos con nombre, descripción, valor base, IVA (19%) y total
 const PRODUCTOS = [
   {
     categoria: "Suscripción",
@@ -32,7 +32,11 @@ const PRODUCTOS = [
 // Llave pública de prueba indicada en la prueba técnica
 const EPAYCO_PUBLIC_KEY = "c40acc8a877f180bf312c79aae0503f7";
 
-// Configuro del Checkout de ePayco en modo pruebas
+// URL pública del servicio Webhook (Node.js en puerto 3001 expuesto por ngrok)
+const WEBHOOK_CONFIRMATION_URL =
+  "https://recalcitrantly-sunbonneted-carmon.ngrok-free.dev/api/confirmation";
+
+// Configuración del Checkout de ePayco en modo pruebas
 const handler = ePayco.checkout.configure({
   key: EPAYCO_PUBLIC_KEY,
   test: true,
@@ -43,7 +47,7 @@ function formatearCOP(valor) {
   return Number(valor).toLocaleString("es-CO");
 }
 
-// Actualizo la vista con el producto seleccionado
+// Actualiza la vista con el producto seleccionado
 function renderizarProductoSeleccionado() {
   const selectEl = document.getElementById("productoSelect");
   const indice = Number(selectEl.value);
@@ -65,7 +69,7 @@ function obtenerUrlBase() {
   return `${window.location.origin}${rutaSinArchivo}`;
 }
 
-// Abro el checkout de ePayco con los datos del producto y del cliente
+// Abre el checkout de ePayco con los datos del producto y del cliente
 function abrirCheckoutEpayco() {
   const selectEl = document.getElementById("productoSelect");
   const indice = Number(selectEl.value);
@@ -105,7 +109,7 @@ function abrirCheckoutEpayco() {
 
     // URL de respuesta (Punto 2) y confirmación / webhook (Punto 3)
     response: `${urlBase}response.html`,
-    confirmation: "https://TU-URL-NGROK.ngrok-free.app/api/confirmation",
+    confirmation: WEBHOOK_CONFIRMATION_URL,
 
     // Información del pagador
     name_billing: nombreCliente,
@@ -119,7 +123,7 @@ function abrirCheckoutEpayco() {
   handler.open(paymentData);
 }
 
-// Inicializacio de eventos cuando carga el DOM :V
+// Inicialización de eventos cuando carga el DOM
 document.addEventListener("DOMContentLoaded", () => {
   renderizarProductoSeleccionado();
 

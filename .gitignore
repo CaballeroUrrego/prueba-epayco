@@ -1,0 +1,15 @@
+# Dependencias de Node.js
+node_modules/
+webhook-epayco/node_modules/
+
+# Variables de entorno y credenciales sensibles
+.env
+webhook-epayco/.env
+
+# Archivos temporales y del sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Opcional: descomenta la siguiente línea si no quieres subir el historial de pruebas locales
+# webhook-epayco/confirmaciones.txt
