@@ -3,6 +3,7 @@ const express = require("express");
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const sdkRoutes = require("./sdkRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -14,9 +15,12 @@ const P_KEY = process.env.P_KEY || "be65b2dab4530e82c9979b5c9eac317e5cd4d197";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Rutas del SDK oficial de ePayco (PSE y Efectivo)
+app.use("/api/sdk", sdkRoutes);
+
 /**
- * Calcula la firma SHA-256 oficial de ePayco / Davipay:
- * p_cust_id_cliente^p_key^x_ref_payco^x_transaction_id^x_amount^x_currency_code
+- Calcula la firma SHA-256 oficial de ePayco / Davipay:
+- p_cust_id_cliente^p_key^x_ref_payco^x_transaction_id^x_amount^x_currency_code
  */
 function calcularFirmaEpayco(payload) {
   const refPayco = String(payload.x_ref_payco ?? "").trim();
